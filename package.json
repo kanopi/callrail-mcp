@@ -1,0 +1,39 @@
+{
+  "name": "call-rail-mcp",
+  "version": "0.1.0",
+  "description": "Model Context Protocol (MCP) server for the CallRail API v3",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "callrail-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "callrail",
+    "call-rail",
+    "call-tracking"
+  ],
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "tsx": "^4.22.4",
+    "typescript": "^5.7.0"
+  }
+}
