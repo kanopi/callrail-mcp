@@ -1,6 +1,6 @@
 {
   "name": "@kanopi/callrail-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Model Context Protocol (MCP) server for the CallRail API v3",
   "type": "module",
   "license": "MIT",
