@@ -1,4 +1,4 @@
-# call-rail-mcp
+# @kanopi/callrail-mcp
 
 A [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server for the
 [CallRail API v3](https://apidocs.callrail.com/). It exposes CallRail's call tracking,
@@ -16,9 +16,21 @@ account.
 - A CallRail **API v3 key** — in CallRail go to **Settings → Integrations → API Keys →
   Create New API v3 Key**. Keys are user-scoped; the server can only see what that user can.
 
-## Install & build
+## Usage
+
+No install needed — run the published package directly with `npx`:
 
 ```bash
+npx -y @kanopi/callrail-mcp
+```
+
+`npx` fetches `@kanopi/callrail-mcp` and runs its `callrail-mcp` binary over stdio. This
+is what you point your MCP client at (see [Connecting to a client](#connecting-to-a-client)).
+
+### Build from source (for development)
+
+```bash
+git clone <repo-url> && cd call-rail-mcp
 npm install
 npm run build
 ```
@@ -46,7 +58,7 @@ environment; your MCP client passes these in — see below).
 claude mcp add callrail \
   --env CALLRAIL_API_KEY=your_api_key_here \
   --env CALLRAIL_ACCOUNT_ID=your_account_id \
-  -- node /absolute/path/to/call-rail-mcp/dist/index.js
+  -- npx -y @kanopi/callrail-mcp
 ```
 
 ### Claude Desktop / other clients (JSON config)
@@ -58,8 +70,8 @@ Add to the `mcpServers` block of the client's config
 {
   "mcpServers": {
     "callrail": {
-      "command": "node",
-      "args": ["/absolute/path/to/call-rail-mcp/dist/index.js"],
+      "command": "npx",
+      "args": ["-y", "@kanopi/callrail-mcp"],
       "env": {
         "CALLRAIL_API_KEY": "your_api_key_here",
         "CALLRAIL_ACCOUNT_ID": "your_account_id"
@@ -69,8 +81,9 @@ Add to the `mcpServers` block of the client's config
 }
 ```
 
-During development you can point `args` at the TypeScript source via `tsx`:
-`"command": "npx", "args": ["tsx", "/abs/path/src/index.ts"]`.
+To run a local checkout instead of the published package, point at the built entrypoint —
+`"command": "node", "args": ["/absolute/path/to/call-rail-mcp/dist/index.js"]` — or the
+TypeScript source via tsx: `"command": "npx", "args": ["tsx", "/abs/path/src/index.ts"]`.
 
 ## Tools
 
