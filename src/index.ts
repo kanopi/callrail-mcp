@@ -5,7 +5,21 @@ import { loadConfig } from "./config.js";
 import { CallRailClient } from "./client.js";
 import { registerAllTools } from "./tools/index.js";
 
+/**
+ * Best-effort load of a local .env file so running the server directly picks up
+ * credentials. MCP clients normally pass env via their config; this is additive
+ * and silently skipped if there's no .env or the runtime lacks loadEnvFile.
+ */
+function loadDotEnv(): void {
+  try {
+    (process as unknown as { loadEnvFile?: (path?: string) => void }).loadEnvFile?.(".env");
+  } catch {
+    // no .env file present — ignore
+  }
+}
+
 async function main(): Promise<void> {
+  loadDotEnv();
   const config = loadConfig();
   const client = new CallRailClient(config);
 
