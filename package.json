@@ -4,12 +4,14 @@
   "description": "Model Context Protocol (MCP) server for the CallRail API v3",
   "type": "module",
   "license": "MIT",
+  "author": "Kanopi Studios",
   "bin": {
     "callrail-mcp": "dist/index.js"
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "engines": {
     "node": ">=18"
